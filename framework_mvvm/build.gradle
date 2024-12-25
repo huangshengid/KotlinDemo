@@ -1,20 +1,17 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    compileSdkVersion rootProject.android.compileSdk
-    buildToolsVersion "30.0.3"
+    namespace 'com.desaysv.mvvm'
+    compileSdk rootProject.android.compileSdk
 
     defaultConfig {
-        applicationId rootProject.android.applicationId
-        minSdkVersion rootProject.android.minSdk
-        targetSdkVersion rootProject.android.targetSdk
-        versionCode rootProject.android.versionCode
-        versionName rootProject.android.versionName
+        minSdk rootProject.android.minSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -30,18 +27,21 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
 }
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation rootProject.depsLibs.coreKtx
+    //是一种特殊的依赖项，用于管理一个库或框架中所有相关依赖的版本
+    implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
     implementation rootProject.depsLibs.appcompat
     implementation rootProject.depsLibs.material
-    implementation rootProject.depsLibs.constraintlayout
     testImplementation rootProject.depsLibs.junit
     androidTestImplementation rootProject.depsLibs.extJunit
     androidTestImplementation rootProject.depsLibs.espressoCore
-
-    implementation project(path: ':framework_mvvm')
+    implementation rootProject.depsLibs.navigationUI
 }
