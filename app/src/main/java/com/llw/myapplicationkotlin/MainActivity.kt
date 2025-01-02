@@ -1,11 +1,18 @@
 package com.llw.myapplicationkotlin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.desaysv.mvvm.base.activity.BaseMvvmActivity
+import com.desaysv.mvvm.log.LogUtil
+import com.llw.myapplicationkotlin.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseMvvmActivity<ActivityMainBinding, MainViewModel>() {
+    override fun getLayoutResId(): Int = R.layout.activity_main
+
+    override fun initView(savedInstanceState: Bundle?) {
+        LogUtil.d("initView")
+        supportActionBar?.hide()
+        mBinding.tvHello.setOnClickListener {
+            LogUtil.d("click")
+        }
     }
 }
