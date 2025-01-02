@@ -5,8 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.appcompat.widget.Toolbar
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.desaysv.mvvm.R
 
@@ -16,54 +20,105 @@ import com.desaysv.mvvm.R
  * @Author      : uids0505
  */
 abstract class BaseToolbarFragment<DB : ViewBinding, VM : ViewModel> : BaseMvvmFragment<DB, VM>() {
-    lateinit var toolbar: Toolbar
+    private lateinit var containerLayout: LinearLayout // 根容器，包含标题栏和子类布局
+    private var titleTextView: TextView? = null
+    private var rightContainer: FrameLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        // 加载基础布局
-        val rootView = inflater.inflate(R.layout.layout_base_toolbar, container, false)
+    ): View? {
+        val originalView = super.onCreateView(inflater, container, savedInstanceState)
+        return createRootView(originalView!!)
+    }
 
-        // 初始化 Toolbar
-        toolbar = rootView.findViewById(R.id.toolbar)
-        setupToolbar()
-
-        // 加载子类提供的内容布局到 content_container
-        val contentContainer = rootView.findViewById<FrameLayout>(R.id.content_container)
-        inflater.inflate(getContentLayoutResId(), contentContainer, true)
-
-        return rootView
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // 隐藏系统的 ActionBar
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
+        super.onViewCreated(view, savedInstanceState)
+        setupTitleBar()
     }
 
     /**
-     * 初始化 Toolbar
+     * 创建根布局，包含标题栏 + 子类布局
      */
-    open fun setupToolbar() {
-        toolbar = requireView().findViewById(R.id.toolbar) // 布局中必须包含 Toolbar
-        toolbar.title = getTitle()
-//        toolbar.setNavigationIcon(R.drawable.ic_back) // 设置返回图标
-        toolbar.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
+    private fun createRootView(view: View): View {
+        // 外层布局容器
+        containerLayout = LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        }
 
-        // 如果需要右侧自定义布局，调用子类的方法
-        addCustomViewToToolbar()
+        // 添加自定义标题栏
+        val toolbar = layoutInflater.inflate(R.layout.toolbar, containerLayout, false)
+        containerLayout.addView(toolbar)
+
+        // 将 Fragment 原始内容布局嵌套到内容容器中
+        val contentContainer = FrameLayout(requireContext()).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        }
+
+        // 移除原始 view 的父布局，重新添加到 contentContainer
+        val parent = view.parent as? ViewGroup
+        parent?.removeView(view)
+        contentContainer.addView(view)
+
+        // 动态调整内容容器的顶部内边距，避免被标题栏覆盖
+        contentContainer.setPadding(0, toolbar.measuredHeight, 0, 0)
+
+        containerLayout.addView(contentContainer)
+
+        // 初始化标题栏中的控件
+        titleTextView = toolbar.findViewById(R.id.toolbar_title)
+        rightContainer = toolbar.findViewById(R.id.toolbar_right_container)
+        val backButton = toolbar.findViewById<ImageView>(R.id.btn_back)
+
+        backButton?.apply {
+            visibility = if (hasBackButton()) View.VISIBLE else View.GONE
+            setOnClickListener {
+                // 使用 NavController 处理返回逻辑
+                if (!findNavController().popBackStack()) {
+                    // 如果 NavController 的返回栈为空，则退出 Activity
+                    activity?.onBackPressedDispatcher?.onBackPressed()
+                }
+            }
+        }
+
+        return containerLayout
+    }
+
+    protected fun setTitle(title: String) {
+        titleTextView?.text = title
     }
 
     /**
-     * 子类必须提供内容布局的资源 ID
+     * 子类可以调用该方法设置右侧扩展布局
      */
-    abstract fun getContentLayoutResId(): Int
+    protected fun setRightLayout(layoutResId: Int?) {
+        rightContainer?.removeAllViews()
+        layoutResId?.let {
+            val inflater = LayoutInflater.from(rightContainer?.context)
+            val view = inflater.inflate(it, rightContainer, false)
+            rightContainer?.addView(view)
+        }
+    }
 
     /**
-     * 子类可通过重写此方法自定义 Toolbar 标题
+     * 是否显示返回按钮，子类可以重写决定
      */
-    open fun getTitle(): String = ""
+    open fun hasBackButton(): Boolean = true
 
     /**
-     * 子类可通过重写此方法自定义 Toolbar 的右侧布局
+     * 初始化标题栏（子类可重写此方法自定义逻辑）
      */
-    open fun addCustomViewToToolbar() {
-        // 默认不添加任何自定义布局
+    open fun setupTitleBar() {
+        setTitle("默认标题") // 子类可以通过 `setTitle` 自定义标题
     }
 }

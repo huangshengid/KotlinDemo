@@ -2,6 +2,7 @@ package com.desaysv.mvvm.base.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
@@ -16,6 +17,7 @@ abstract class BaseMvvmFragment<DB : ViewBinding, VM : ViewModel> :BaseDataBindF
     lateinit var mViewModel: VM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViewModel()
+        // 包裹子类布局的根容器
         super.onViewCreated(view, savedInstanceState)
     }
 
