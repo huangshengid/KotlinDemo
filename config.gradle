@@ -99,5 +99,7 @@ ext {
             rxPermission      : "com.github.tbruyelle:rxpermissions:${dependVersion["permissionsVersion"]}",
             rxjava            : "io.reactivex.rxjava3:rxjava:${dependVersion["rxjavaVersion"]}",
             rxandroid         : "io.reactivex.rxjava3:rxandroid:${dependVersion["rxandroidVersion"]}",
+
+            brvRecyclerView   : 'com.github.liangjingkanji:BRV:1.6.1',
     ]
 }

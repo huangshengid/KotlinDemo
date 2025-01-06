@@ -23,7 +23,7 @@ class HomeFragment : BaseToolbarFragment<FragmentHomeBinding, HomeViewModel>() {
 //        (activity as AppCompatActivity).supportActionBar?.title = "自定义首页标题"
         mBinding?.btDetail?.setOnClickListener {
             // 使用 Navigation 组件进行跳转
-            findNavController().navigate(R.id.soundFragment)
+            findNavController().navigate(R.id.systemInfoFragment)
         }
     }
 

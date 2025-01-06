@@ -44,4 +44,5 @@ dependencies {
     androidTestImplementation rootProject.depsLibs.extJunit
     androidTestImplementation rootProject.depsLibs.espressoCore
     implementation rootProject.depsLibs.navigationUI
+    api rootProject.depsLibs.brvRecyclerView
 }

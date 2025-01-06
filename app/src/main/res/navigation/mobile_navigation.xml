@@ -18,4 +18,11 @@
         tools:layout="@layout/fragment_sound">
     </fragment>
 
+    <fragment
+        android:id="@+id/systemInfoFragment"
+        android:name="com.llw.myapplicationkotlin.ui.system.SystemInfoFragment"
+        android:label="SystemInfoFragment"
+        tools:layout="@layout/fragment_system_info">
+    </fragment>
+
 </navigation>
