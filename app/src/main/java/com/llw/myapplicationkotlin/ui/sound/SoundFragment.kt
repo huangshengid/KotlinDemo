@@ -13,13 +13,13 @@ import com.llw.myapplicationkotlin.ui.sound.viewmodel.SoundViewModel
  * @Date        : 2025/1/2 17:32
  * @Author      : uids0505
  */
-class SoundFragment : BaseToolbarFragment<FragmentSoundBinding, SoundViewModel>(){
+class SoundFragment : BaseMvvmFragment<FragmentSoundBinding, SoundViewModel>(){
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         LogUtil.d("initView")
     }
 
-    override fun setupTitleBar() {
-        setTitle("声音")
-    }
+//    override fun setupTitleBar() {
+//        setTitle("声音")
+//    }
 }

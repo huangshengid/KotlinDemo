@@ -1,5 +1,6 @@
 package com.llw.myapplicationkotlin.ui.home.bean
 
+import androidx.fragment.app.Fragment
 import com.desaysv.mvvm.base.fragment.ItemPosition
 
 /**
@@ -10,3 +11,5 @@ import com.desaysv.mvvm.base.fragment.ItemPosition
 
 data class HomeItem(val title: String, val imageId: Int, override var itemPosition: Int = 0) :
     ItemPosition
+
+data class TabItem(val id: Int, val title: String,val fragment: Fragment)

@@ -16,6 +16,8 @@ import java.lang.reflect.ParameterizedType
 abstract class BaseMvvmFragment<DB : ViewBinding, VM : ViewModel> :BaseDataBindFragment<DB>() {
     lateinit var mViewModel: VM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // 隐藏系统的 ActionBar
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
         initViewModel()
         // 包裹子类布局的根容器
         super.onViewCreated(view, savedInstanceState)

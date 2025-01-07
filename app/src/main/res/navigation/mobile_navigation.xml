@@ -9,6 +9,10 @@
         android:name="com.llw.myapplicationkotlin.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
+        <argument
+            android:name="selectedTabIndex"
+            app:argType="integer"
+            android:defaultValue="0"/>
     </fragment>
 
     <fragment

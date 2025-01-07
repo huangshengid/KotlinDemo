@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import com.desaysv.mvvm.base.fragment.BaseMvvmFragment
 import com.desaysv.mvvm.base.fragment.BaseToolbarFragment
 import com.desaysv.mvvm.base.fragment.ImageItem
 import com.desaysv.mvvm.base.fragment.TextItem
@@ -20,11 +21,11 @@ import com.llw.myapplicationkotlin.databinding.FragmentSystemInfoBinding
  * @Date        : 2025/1/2 17:34
  * @Author      : uids0505
  */
-class SystemInfoFragment : BaseToolbarFragment <FragmentSystemInfoBinding, SystemInfoViewModel>(){
+class SystemInfoFragment : BaseMvvmFragment<FragmentSystemInfoBinding, SystemInfoViewModel>(){
 
-    override fun setupTitleBar() {
-        setTitle("系统信息")
-    }
+//    override fun setupTitleBar() {
+//        setTitle("系统信息")
+//    }
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         mBinding?.rvSystem?.apply {

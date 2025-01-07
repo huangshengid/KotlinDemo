@@ -34,8 +34,6 @@ abstract class BaseToolbarFragment<DB : ViewBinding, VM : ViewModel> : BaseMvvmF
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // 隐藏系统的 ActionBar
-        (activity as? AppCompatActivity)?.supportActionBar?.hide()
         super.onViewCreated(view, savedInstanceState)
         setupTitleBar()
     }
