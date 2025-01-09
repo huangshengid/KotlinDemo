@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwitchButton">
+        <!-- 选中时的背景颜色 -->
+        <attr name="checkedColor" format="color" />
+        <!-- 未选中时的背景颜色 -->
+        <attr name="uncheckedColor" format="color" />
+        <attr name="thumbColor" format="color" />
+        <attr name="isChecked" format="boolean" />
+    </declare-styleable>
+</resources>

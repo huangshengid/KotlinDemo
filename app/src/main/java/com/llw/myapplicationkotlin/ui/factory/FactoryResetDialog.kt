@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentActivity
 import com.desaysv.mvvm.base.dialog.BaseDialog
 import com.desaysv.mvvm.base.dialog.BaseDialogFragment
 import com.desaysv.mvvm.ext.onClick
+import com.desaysv.mvvm.manager.AppManager
 import com.desaysv.mvvm.utils.ViewUtils
 import com.llw.myapplicationkotlin.databinding.DialogFactoryResetConfirmBinding
 
@@ -28,12 +29,12 @@ class FactoryResetDialog {
         }
 
         private fun initView() {
-            Log.d("FactoryResetDialog", "initView ${mBinding.root}")
+            Log.d("FactoryResetDialog", "initView ${mBinding.root} + ${(AppManager.getScreenWidthPx() * 0.8).toInt()} + , ${(AppManager.getScreenHeightPx() * 0.8).toInt()}")
             setContentView(mBinding.root)
-            setWidth(ViewGroup.LayoutParams.WRAP_CONTENT)
-            setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+            setWidth(320)
+            setHeight(300)
             setAnimStyle(BaseDialog.AnimStyle.BOTTOM)
-            gravity = Gravity.BOTTOM
+            gravity = Gravity.CENTER
             ViewUtils.setClipViewCornerRadius(mBinding.root, 20)
 
             mBinding.btnCancel.onClick {
@@ -47,6 +48,10 @@ class FactoryResetDialog {
             }
         }
 
+        /**
+         * 为什么返回 Builder？
+         * 方法返回 Builder 本身，使得这个方法支持链式调用
+         */
         fun setOnConfirmCall(onConfirmCall: () -> Unit): Builder {
             mOnConfirmCall = onConfirmCall
             return this

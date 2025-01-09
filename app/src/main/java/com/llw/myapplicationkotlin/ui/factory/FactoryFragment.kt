@@ -3,11 +3,13 @@ package com.llw.myapplicationkotlin.ui.factory
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.desaysv.mvvm.base.fragment.BaseMvvmFragment
-import com.desaysv.mvvm.base.fragment.BaseToolbarFragment
 import com.desaysv.mvvm.ext.onClick
+import com.desaysv.mvvm.toast.TipsToast
 import com.llw.myapplicationkotlin.databinding.FragmentFactoryBinding
 import com.llw.myapplicationkotlin.ui.factory.viewmodel.FactoryViewModel
+import com.llw.myapplicationkotlin.widget.SwitchButton
 
 /**
  * @Description : 恢复出厂设置
@@ -16,10 +18,19 @@ import com.llw.myapplicationkotlin.ui.factory.viewmodel.FactoryViewModel
  */
 class FactoryFragment : BaseMvvmFragment<FragmentFactoryBinding, FactoryViewModel>() {
     override fun initView(view: View, savedInstanceState: Bundle?) {
+        (mBinding?.sbDemo as? SwitchButton)?.onCheckedChangeListener = {
+            if (it) {
+                TipsToast.showTips("开启")
+            } else {
+                TipsToast.showTips("关闭")
+            }
+        }
         mBinding?.btDialog?.onClick {
             FactoryResetDialog.Builder(requireActivity()).setOnConfirmCall {
                 Log.d(TAG, "initView: 点击了确定")
             }.show()
+//            TipsToast.showTips("点击了确定")
+//            Toast.makeText(requireActivity(), "点击了确定", Toast.LENGTH_SHORT).show()
 //            MessageDialog.Builder(requireActivity()).setTitle("温馨提示")
 //                .setMessage("是否清除搜索历史记录？")
 //                .setConfirm("确定")

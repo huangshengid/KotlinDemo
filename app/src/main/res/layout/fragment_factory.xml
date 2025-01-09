@@ -27,5 +27,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.llw.myapplicationkotlin.widget.CustomSliderView
+            android:id="@+id/custom_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/sb_demo"/>
+
+        <com.llw.myapplicationkotlin.widget.SwitchButton
+            android:id="@+id/sb_demo"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/dp_20"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
