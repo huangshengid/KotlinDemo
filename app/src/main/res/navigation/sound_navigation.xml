@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sound_navigation"
+    app:startDestination="@id/soundEffectFragment">
+
+    <fragment
+        android:id="@+id/soundEffectFragment"
+        android:name="com.llw.myapplicationkotlin.ui.sound.effect.SoundEffectFragment"
+        android:label="SoundEffectFragment" />
+
+    <fragment
+        android:id="@+id/volumeFragment"
+        android:name="com.llw.myapplicationkotlin.ui.sound.volume.VolumeFragment"
+        android:label="SoundNavigationFragment" />
+
+</navigation>
