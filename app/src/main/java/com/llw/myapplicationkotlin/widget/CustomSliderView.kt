@@ -23,21 +23,31 @@ class CustomSliderView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
+    // 控件定义
     private val decreaseButton: View
     private val increaseButton: View
     private val seekBar: SeekBar
-    private val indicator: TextView
+//    private val indicator: TextView
+
+    // 自定义的最大值、最小值和默认值
+    var minValue: Int = 0
+    var maxValue: Int = 100
+    var defaultValue: Int = 50
+    var stepValue: Int = 1  // 默认步长是 1
 
     private val centerLinePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.GRAY
         strokeWidth = 4f // 中间竖条的宽度
     }
 
-    var progress: Int
-        get() = seekBar.progress
+    var mProgress: Int
+        get() = seekBar.progress + minValue  // 显示实际进度
         set(value) {
-            seekBar.progress = value
+            // 设置进度时确保在 min 和 max 之间
+            seekBar.progress = (value - minValue).coerceIn(0, maxValue - minValue)
+//            updateIndicator(seekBar.progress)
         }
+
 
     var onProgressChanged: ((Int) -> Unit)? = null
 
@@ -48,31 +58,44 @@ class CustomSliderView @JvmOverloads constructor(
         decreaseButton = findViewById(R.id.btn_decrease)
         increaseButton = findViewById(R.id.btn_increase)
         seekBar = findViewById(R.id.seekBar)
-        indicator = findViewById(R.id.text_indicator)
+//        indicator = findViewById(R.id.text_indicator)
 
-        // 设置初始值
-        seekBar.progress = 50
-        updateIndicator(seekBar.progress)
+        // 从 XML 中读取属性
+        attrs?.let {
+            val typedArray = context.obtainStyledAttributes(it, R.styleable.CustomSliderView, defStyleAttr, 0)
+            minValue = typedArray.getInt(R.styleable.CustomSliderView_minValue, 0)
+            maxValue = typedArray.getInt(R.styleable.CustomSliderView_maxValue, 100)
+            defaultValue = typedArray.getInt(R.styleable.CustomSliderView_defaultValue, 50)
+            stepValue = typedArray.getInt(R.styleable.CustomSliderView_stepValue, 1)  // 从 XML 中读取步长
+            typedArray.recycle()
+        }
+
+
+        // 设置 SeekBar 的最大值、最小值和默认值
+        seekBar.max = maxValue - minValue
+        seekBar.progress = defaultValue - minValue
+//        updateIndicator(seekBar.progress)
+
 
         // 减少按钮
         decreaseButton.setOnClickListener {
-            if (seekBar.progress > 0) {
-                seekBar.progress -= 10
-            }
+            // 按-按钮时减少 progress
+            decreaseProgress()
         }
 
         // 增加按钮
         increaseButton.setOnClickListener {
-            if (seekBar.progress < seekBar.max) {
-                seekBar.progress += 10
-            }
+            // 按+按钮时增加 progress
+            increaseProgress()
         }
 
         // 监听滑动条
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                updateIndicator(progress)
-                onProgressChanged?.invoke(progress)
+                // 更新指示器和外部监听器
+                mProgress = progress + minValue  // 将进度值映射到实际的范围
+//                updateIndicator( mProgress)  // 将进度值映射到实际的范围
+                onProgressChanged?.invoke(mProgress)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -86,20 +109,35 @@ class CustomSliderView @JvmOverloads constructor(
     }
 
     // 更新指示器
-    private fun updateIndicator(progress: Int) {
-        indicator.text = "$progress"
-        val seekBarWidth = seekBar.width - seekBar.paddingStart - seekBar.paddingEnd
-        val thumbOffset = seekBar.thumb.intrinsicWidth / 2
-        val indicatorPosition = (progress.toFloat() / seekBar.max) * seekBarWidth - thumbOffset
-        indicator.translationX = indicatorPosition
+//    private fun updateIndicator(progress: Int) {
+//        indicator.text = "$progress"
+//        val seekBarWidth = seekBar.width - seekBar.paddingStart - seekBar.paddingEnd
+//        val thumbOffset = seekBar.thumb.intrinsicWidth / 2
+//        val indicatorPosition = ((progress - minValue).toFloat() / (maxValue - minValue)) * seekBarWidth - thumbOffset
+//        indicator.translationX = indicatorPosition
+//    }
+
+    // 设置最小值、最大值、默认值和步长
+    fun setRange(min: Int, max: Int, default: Int, step: Int) {
+        minValue = min
+        maxValue = max
+        defaultValue = default
+        stepValue = step
+        seekBar.max = maxValue - minValue
+        mProgress = defaultValue
     }
 
-    override fun dispatchDraw(canvas: Canvas) {
-        super.dispatchDraw(canvas)
-        // 在滑动条中间绘制竖条
-        val centerX = width / 2f
-        val top = seekBar.top.toFloat()
-        val bottom = seekBar.bottom.toFloat()
-        canvas.drawLine(centerX, top, centerX, bottom, centerLinePaint)
+    // 减少进度
+    private fun decreaseProgress() {
+        if (mProgress > minValue) {
+            mProgress -= stepValue  // 每次减去步长
+        }
+    }
+
+    // 增加进度
+    private fun increaseProgress() {
+        if (mProgress < maxValue) {
+            mProgress += stepValue  // 每次加上步长
+        }
     }
 }

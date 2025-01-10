@@ -8,4 +8,12 @@
         <attr name="thumbColor" format="color" />
         <attr name="isChecked" format="boolean" />
     </declare-styleable>
+
+    <!--自定义滑动条-->
+    <declare-styleable name="CustomSliderView">
+        <attr name="minValue" format="integer"/>
+        <attr name="maxValue" format="integer"/>
+        <attr name="defaultValue" format="integer"/>
+        <attr name="stepValue" format="integer"/>
+    </declare-styleable>
 </resources>

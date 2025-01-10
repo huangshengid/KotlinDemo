@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -49,6 +50,9 @@ dependencies {
     androidTestImplementation rootProject.depsLibs.espressoCore
     implementation rootProject.depsLibs.navigationFragment
     implementation rootProject.depsLibs.navigationUI
+
+    compileOnly rootProject.depsLibs.glide
+    kapt rootProject.depsLibs.glideCompiler
 
 
     implementation project(path: ':framework_mvvm')

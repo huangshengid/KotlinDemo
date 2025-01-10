@@ -25,6 +25,11 @@ class FactoryFragment : BaseMvvmFragment<FragmentFactoryBinding, FactoryViewMode
                 TipsToast.showTips("关闭")
             }
         }
+
+        mBinding?.customSlider?.setRange(2, 12, 6,1)
+        mBinding?.customSlider?.onProgressChanged = {
+            Log.d(TAG, "initView: 进度变化   $it")
+        }
         mBinding?.btDialog?.onClick {
             FactoryResetDialog.Builder(requireActivity()).setOnConfirmCall {
                 Log.d(TAG, "initView: 点击了确定")

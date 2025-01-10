@@ -34,7 +34,11 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/sb_demo"/>
+            app:layout_constraintBottom_toTopOf="@+id/sb_demo"
+            app:minValue="1"
+            app:maxValue="12"
+            app:defaultValue="2"
+            app:stepValue="1"/>
 
         <com.llw.myapplicationkotlin.widget.SwitchButton
             android:id="@+id/sb_demo"
