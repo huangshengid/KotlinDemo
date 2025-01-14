@@ -9,7 +9,7 @@ ext {
     ]
 
     android = [
-            applicationId    : "com.llw.myapplicationkotlin",
+            applicationId    : "com.hs.myapplicationkotlin",
             compileSdk : 34,
             minSdk     : 24,
             targetSdk  : 33,

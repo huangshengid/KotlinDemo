@@ -6,12 +6,12 @@
 
     <fragment
         android:id="@+id/soundEffectFragment"
-        android:name="com.llw.myapplicationkotlin.ui.sound.effect.SoundEffectFragment"
+        android:name="com.hs.myapplicationkotlin.ui.sound.effect.SoundEffectFragment"
         android:label="SoundEffectFragment" />
 
     <fragment
         android:id="@+id/volumeFragment"
-        android:name="com.llw.myapplicationkotlin.ui.sound.volume.VolumeFragment"
+        android:name="com.hs.myapplicationkotlin.ui.sound.volume.VolumeFragment"
         android:label="SoundNavigationFragment" />
 
 </navigation>

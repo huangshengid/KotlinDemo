@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.llw.myapplicationkotlin.widget.CustomSliderView
+        <com.hs.myapplicationkotlin.widget.CustomSliderView
             android:id="@+id/custom_slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             app:defaultValue="2"
             app:stepValue="1"/>
 
-        <com.llw.myapplicationkotlin.widget.SwitchButton
+        <com.hs.myapplicationkotlin.widget.SwitchButton
             android:id="@+id/sbn_demo"
             android:layout_width="100dp"
             android:layout_height="50dp"

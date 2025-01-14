@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.llw.myapplicationkotlin.widget.SwitchButton
+        <com.hs.myapplicationkotlin.widget.SwitchButton
             android:id="@+id/sbn_vibration"
             android:layout_width="100dp"
             android:layout_height="50dp"

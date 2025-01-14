@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.llw.myapplicationkotlin.ui.home.HomeFragment"
+        android:name="com.hs.myapplicationkotlin.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <argument
@@ -17,28 +17,28 @@
 
     <fragment
         android:id="@+id/clockFragment"
-        android:name="com.llw.myapplicationkotlin.ui.clock.ClockFragment"
+        android:name="com.hs.myapplicationkotlin.ui.clock.ClockFragment"
         android:label="MineFragment"
         tools:layout="@layout/fragment_clock">
     </fragment>
 
     <fragment
         android:id="@+id/languageFragment"
-        android:name="com.llw.myapplicationkotlin.ui.language.LanguageFragment"
+        android:name="com.hs.myapplicationkotlin.ui.language.LanguageFragment"
         android:label="MineFragment"
         tools:layout="@layout/fragment_language">
     </fragment>
 
     <fragment
         android:id="@+id/factoryFragment"
-        android:name="com.llw.myapplicationkotlin.ui.factory.FactoryFragment"
+        android:name="com.hs.myapplicationkotlin.ui.factory.FactoryFragment"
         android:label="FactoryFragment"
         tools:layout="@layout/fragment_factory">
     </fragment>
 
     <fragment
         android:id="@+id/soundFragment"
-        android:name="com.llw.myapplicationkotlin.ui.sound.SoundFragment"
+        android:name="com.hs.myapplicationkotlin.ui.sound.SoundFragment"
         android:label="SoundFragment"
         tools:layout="@layout/fragment_sound">
     </fragment>
@@ -46,14 +46,14 @@
 
     <fragment
         android:id="@+id/systemInfoFragment"
-        android:name="com.llw.myapplicationkotlin.ui.system.SystemInfoFragment"
+        android:name="com.hs.myapplicationkotlin.ui.system.SystemInfoFragment"
         android:label="SystemInfoFragment"
         tools:layout="@layout/fragment_system_info">
     </fragment>
 
     <fragment
         android:id="@+id/vibrationFragment"
-        android:name="com.llw.myapplicationkotlin.ui.vibration.VibrationFragment"
+        android:name="com.hs.myapplicationkotlin.ui.vibration.VibrationFragment"
         android:label="MineFragment"
         tools:layout="@layout/fragment_vibration">
     </fragment>

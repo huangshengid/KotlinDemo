@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.llw.myapplicationkotlin">
+    package="com.hs.myapplicationkotlin">
 
     <application
-        android:name=".SettingApplication"
+        android:name="com.hs.myapplicationkotlin.SettingApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Transparent">
         <activity
-            android:name=".TestActivity"
+            android:name="com.hs.myapplicationkotlin.TestActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.hs.myapplicationkotlin.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
