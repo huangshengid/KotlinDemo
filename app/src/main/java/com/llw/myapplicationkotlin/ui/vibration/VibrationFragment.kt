@@ -14,6 +14,12 @@ import com.llw.myapplicationkotlin.ui.vibration.viewmodel.VibrationViewModel
  */
 class VibrationFragment : BaseMvvmFragment<FragmentVibrationBinding, VibrationViewModel>() {
     override fun initView(view: View, savedInstanceState: Bundle?) {
+        mViewModel.vibrationStatus.observe(viewLifecycleOwner) {
+            mBinding?.sbnVibration?.isChecked = it
+        }
+    }
 
+    override fun initData() {
+        mViewModel.loadVibrationStatus()
     }
 }

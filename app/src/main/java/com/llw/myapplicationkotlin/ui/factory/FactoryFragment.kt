@@ -18,7 +18,7 @@ import com.llw.myapplicationkotlin.widget.SwitchButton
  */
 class FactoryFragment : BaseMvvmFragment<FragmentFactoryBinding, FactoryViewModel>() {
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        (mBinding?.sbDemo as? SwitchButton)?.onCheckedChangeListener = {
+        (mBinding?.sbnDemo as? SwitchButton)?.onCheckedChangeListener = {
             if (it) {
                 TipsToast.showTips("开启")
             } else {
@@ -30,25 +30,29 @@ class FactoryFragment : BaseMvvmFragment<FragmentFactoryBinding, FactoryViewMode
         mBinding?.customSlider?.onProgressChanged = {
             Log.d(TAG, "initView: 进度变化   $it")
         }
+
+
         mBinding?.btDialog?.onClick {
             FactoryResetDialog.Builder(requireActivity()).setOnConfirmCall {
                 Log.d(TAG, "initView: 点击了确定")
             }.show()
 //            TipsToast.showTips("点击了确定")
-//            Toast.makeText(requireActivity(), "点击了确定", Toast.LENGTH_SHORT).show()
-//            MessageDialog.Builder(requireActivity()).setTitle("温馨提示")
-//                .setMessage("是否清除搜索历史记录？")
-//                .setConfirm("确定")
-////                .setConfirmTxtColor(activity?.resources.getColorFromResource(R.color.color_0165b8))
-//                .setCancel("取消")
-//                .setonCancelListener {
-//                    it?.dismiss()
-//                }
-//                .setonConfirmListener {
-////                    SearchManager.clearSearchHistory()
-//                    Log.d(TAG, "initView: 点击了确定")
-//                    it?.dismiss()
-//                }.create().show()
+
+
+
+
+            MessageDialog.Builder(requireActivity()).setTitle("温馨提示")
+                .setMessage("恢复出厂设置，将恢复为默认设置，是否继续？")
+                .setConfirm("确定")
+//                .setConfirmTxtColor(activity?.resources.getColorFromResource(R.color.color_0165b8))
+                .setCancel("取消")
+                .setonCancelListener {
+                    it?.dismiss()
+                }
+                .setonConfirmListener {
+                    Log.d(TAG, "initView: 点击了确定")
+                    it?.dismiss()
+                }.create().show()
         }
     }
 }

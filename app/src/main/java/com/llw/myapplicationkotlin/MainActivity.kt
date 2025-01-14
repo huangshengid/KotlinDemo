@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.desaysv.mvvm.base.activity.BaseMvvmActivity
+import com.desaysv.mvvm.ext.onClick
 import com.desaysv.mvvm.log.LogUtil
 import com.llw.myapplicationkotlin.databinding.ActivityMainBinding
 

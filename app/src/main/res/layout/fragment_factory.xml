@@ -41,7 +41,7 @@
             app:stepValue="1"/>
 
         <com.llw.myapplicationkotlin.widget.SwitchButton
-            android:id="@+id/sb_demo"
+            android:id="@+id/sbn_demo"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginStart="@dimen/dp_20"

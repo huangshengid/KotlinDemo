@@ -15,7 +15,7 @@ import androidx.viewbinding.ViewBinding
 import com.desaysv.mvvm.R
 
 /**
- * @Description : 描述
+ * @Description : 提供带标题栏的基类Fragment，并且支持自定义布局
  * @Date        : 2024/12/25 13:45
  * @Author      : uids0505
  */

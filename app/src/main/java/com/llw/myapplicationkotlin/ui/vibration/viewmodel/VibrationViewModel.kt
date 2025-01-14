@@ -1,6 +1,8 @@
 package com.llw.myapplicationkotlin.ui.vibration.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import com.desaysv.mvvm.base.viewmodel.BaseViewModel
+import java.lang.Thread.sleep
 
 /**
  * @Description : 描述
@@ -8,4 +10,16 @@ import com.desaysv.mvvm.base.viewmodel.BaseViewModel
  * @Author      : uids0505
  */
 class VibrationViewModel : BaseViewModel() {
+    var vibrationStatus = MutableLiveData<Boolean>()
+    fun loadVibrationStatus() {
+        launchBackground {
+            //模拟耗时操作
+//            sleep(30)
+         vibrationStatus.postValue(false)
+        }
+    }
+
+
+
+
 }
