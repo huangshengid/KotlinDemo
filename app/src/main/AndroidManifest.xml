@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hs.myapplicationkotlin">
 
     <application
@@ -28,6 +29,16 @@
                     android:host="home" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.startup"
+            android:exported="false"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="com.hs.myapplicationkotlin.startup.SumAppHelperInitializer"
+                android:value="androidx.startup" />
+        </provider>
     </application>
 
 </manifest>

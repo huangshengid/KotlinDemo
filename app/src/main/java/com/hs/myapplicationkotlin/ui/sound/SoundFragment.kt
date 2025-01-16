@@ -19,7 +19,7 @@ import com.hs.myapplicationkotlin.ui.sound.viewmodel.SoundViewModel
 class SoundFragment : BaseMvvmFragment<FragmentSoundBinding, SoundViewModel>(){
     private lateinit var navController: NavController
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        LogUtil.d("initView")
+        LogUtil.d("SoundFragment","initView")
         // 获取 NavController
         navController = childFragmentManager.findFragmentById(R.id.nav_sound)
             ?.findNavController() ?: throw IllegalStateException("NavController not found")

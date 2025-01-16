@@ -13,7 +13,7 @@ import com.hs.myapplicationkotlin.databinding.ActivityMainBinding
 class MainActivity : BaseMvvmActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun initView(savedInstanceState: Bundle?) {
-        LogUtil.d("initView")
+        LogUtil.d("MainActivity","initView")
         // 获取 NavController
         val navController =
             (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController

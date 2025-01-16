@@ -1,7 +1,12 @@
 package com.hs.myapplicationkotlin.ui.vibration.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.viewModelScope
 import com.desaysv.mvvm.base.viewmodel.BaseViewModel
+import com.hs.myapplicationkotlin.ui.vibration.VibrationRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * @Description : 描述
@@ -10,15 +15,13 @@ import com.desaysv.mvvm.base.viewmodel.BaseViewModel
  */
 class VibrationViewModel : BaseViewModel() {
     var vibrationStatus = MutableLiveData<Boolean>()
+    private val repository : VibrationRepository by lazy{
+        VibrationRepository()
+    }
     fun loadVibrationStatus() {
-        launchBackground {
-            //模拟耗时操作
-//            sleep(30)
-         vibrationStatus.postValue(false)
+        launchMainThread {
+            val vibrationStatus1 = repository.getVibrationStatus()
+            vibrationStatus.value = vibrationStatus1
         }
     }
-
-
-
-
 }

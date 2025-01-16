@@ -5,19 +5,19 @@ package com.desaysv.mvvm.utils
 import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.Dimension
-import com.desaysv.mvvm.helper.SumAppHelper
+import com.desaysv.mvvm.helper.AppHelper
 
 fun dpToPx(dpValue: Float): Float {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP, dpValue,
-        SumAppHelper.getApplication().resources.displayMetrics
+        AppHelper.getApplication().resources.displayMetrics
     )
 }
 
 fun dpToPx(dpValue: Int): Int {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP, dpValue.toFloat(),
-        SumAppHelper.getApplication().resources.displayMetrics
+        AppHelper.getApplication().resources.displayMetrics
     ).toInt()
 }
 
@@ -33,6 +33,6 @@ fun spToPx(spValue: Float): Float {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         spValue,
-        SumAppHelper.getApplication().resources.displayMetrics
+        AppHelper.getApplication().resources.displayMetrics
     )
 }

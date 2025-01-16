@@ -1,15 +1,17 @@
 package com.desaysv.mvvm.helper
 
 import android.app.Application
+import android.util.Log
 
 /**
  * @desc   提供应用环境
  */
-object SumAppHelper {
+object AppHelper {
     private lateinit var app: Application
     private var isDebug = false
 
     fun init(application: Application, isDebug: Boolean) {
+        Log.d("SumAppHelper", "init: ")
         this.app = application
         this.isDebug = isDebug
     }

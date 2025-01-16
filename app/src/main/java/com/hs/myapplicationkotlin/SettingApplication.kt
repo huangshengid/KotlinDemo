@@ -1,7 +1,8 @@
 package com.hs.myapplicationkotlin
 
 import android.app.Application
-import com.desaysv.mvvm.helper.SumAppHelper
+import com.desaysv.mvvm.helper.AppHelper
+import com.desaysv.mvvm.log.LogUtil
 import com.desaysv.mvvm.manager.AppManager
 import com.desaysv.mvvm.toast.TipsToast
 
@@ -11,10 +12,14 @@ import com.desaysv.mvvm.toast.TipsToast
  * @Author      : uids0505
  */
 class SettingApplication : Application() {
+    companion object {
+        const val TAG = "SettingApplication"
+    }
 
     override fun onCreate() {
         super.onCreate()
-        SumAppHelper.init(this, BuildConfig.DEBUG)
+        LogUtil.d(TAG, "onCreate")
+        AppHelper.init(this, BuildConfig.DEBUG)
         AppManager.init(this)
         TipsToast.init(this)
     }

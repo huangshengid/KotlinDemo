@@ -54,7 +54,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     private fun onFragmentVisible(isVisibleToUser: Boolean) {
-        LogUtil.w("onFragmentVisible-${TAG}-isVisibleToUser:$isVisibleToUser")
+        LogUtil.w("BaseFragment","onFragmentVisible-${TAG}-isVisibleToUser:$isVisibleToUser")
     }
 
     /**
